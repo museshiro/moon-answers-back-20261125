@@ -1,14 +1,17 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
-// Craft: alien-observer — the Moon as the outside watcher. Setup names the
-// scale (four billion years of wishes); punch turns it back on the wishers:
-// the one being wished upon has never once been wished a good night itself.
-// Rhythm: 7 syllables, then 13, punch landing on the final word.
-const SETUP = "Four billion years of wishes,";
-const PUNCH = " and nobody has ever once wished me a good night.";
+// moon-answers-back — the moon answers back.
+// Entry text, exactly 78 characters, no trailing newline:
+// "Four billion years of wishes, and nobody has ever once wished me a good night."
+// sha256 of the entry text (no newline):
+// 4af7826b09de7e61840ef12995bba535af5c0ea76ebd6abe17f53849a6e864db
 
-const OUT_DIR = "/output";
-const OUT_FILE = "/output/entry.txt";
+const ENTRY_TEXT =
+  "Four billion years of wishes, and nobody has ever once wished me a good night.";
 
-mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(OUT_FILE, SETUP + PUNCH);
+function writeEntry(): void {
+  mkdirSync("/output", { recursive: true });
+  writeFileSync("/output/entry.txt", ENTRY_TEXT, "utf8");
+}
+
+writeEntry();
